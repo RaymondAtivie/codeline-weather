@@ -19,5 +19,3 @@ npm run build --report
 ```
 
 Check the `src/config.js` file to change the api url of the `wheater.php` file to wherever its being hosted
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
