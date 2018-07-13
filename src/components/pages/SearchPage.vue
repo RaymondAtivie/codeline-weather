@@ -9,7 +9,7 @@
 		<div class="row mt-4">
 			<div class="col-md-12">
 				<div>
-					<i v-if="seaching">Searching for {{keyword}}</i> &nbsp;
+					<i v-if="seaching"> <i class="fa fa-spin fa-circle-o-notch"></i> Searching for "{{keyword}}"</i> &nbsp;
 				</div>
 				<h2>{{cities.length}} results for <span style="color: red">{{resultsKeyword}}</span></h2>
 			</div>

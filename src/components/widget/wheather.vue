@@ -39,11 +39,11 @@ export default {
 	props: {
 		city: {
 			type: String,
-			// required: true,
+			required: true,
 		},
 		woeid: {
 			type: Number,
-			// required: true,
+			required: true,
 		}
 	},
 	data(){
@@ -68,11 +68,9 @@ export default {
 	},
 	methods: {
 		gotoDetails(){
+			console.log("go to details");
 			this.$router.push({
-				name: "DetailPage",
-				params: {
-					woeid: this.info.woeid
-				}
+				path: "/weather/"+this.woeid,
 			});
 		}
 	}

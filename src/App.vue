@@ -4,9 +4,9 @@
 			<a class="navbar-brand pointer" @click="goHome">Codeline Weather App</a>
 		</nav>
 		<div class="container">
-			<keep-alive>
+			<!-- <keep-alive> -->
 				<router-view/>
-			</keep-alive>
+			<!-- </keep-alive> -->
 		</div>
 	</div>
 </template>

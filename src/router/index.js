@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import HomePage from '@/components/pages/HomePage';
 import SearchPage from '@/components/pages/SearchPage';
 import DetailPage from '@/components/pages/DetailPage';
+import PageNotFound from '@/components/pages/PageNotFound';
 
 Vue.use(Router);
 
@@ -23,5 +24,6 @@ export default new Router({
 			name: 'DetailPage',
 			component: DetailPage,
 		},
+		{ path: "*", component: PageNotFound }
 	]
 });
