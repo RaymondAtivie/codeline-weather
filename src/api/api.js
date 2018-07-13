@@ -49,6 +49,23 @@ class Api {
 		});
 	}
 
+	getAllWeatherById(woeid){
+		return new Promise((resolve, reject) => {
+			axios.get("?command=location&woeid="+woeid)
+				.then(({data}) => {
+					let wheather = data;
+					if(wheather){
+						resolve(wheather);
+					}else{
+						reject(false);
+					}
+				})
+				.catch(error => {
+					reject(error);
+				})
+		});
+	}
+
 	getWeatherForCity(location){
 		return new Promise((resolve, reject) => {
 			this.findCityId(location)

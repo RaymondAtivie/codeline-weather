@@ -2,9 +2,18 @@
 	<div class="card pointer" :class="{'shadow hovered': hovered}" @mouseenter="hovered=true" @mouseleave="hovered=false" @click="gotoDetails">
 		<div class="card-body d-flex">
 
+			<h5 v-if="showDay" class="card-title my-3 text-center" style="color: red">
+				{{dayName}}
+				<div style="font-size: 1rem; color: silver;" class="text-center">
+					{{info.applicable_date}}
+				</div>
+			</h5>
+
 			<img class="w-25" v-if="loaded && !hasError" :src="'https://www.metaweather.com/static/img/weather/'+info.weather_state_abbr+'.svg'" />
 
-			<h5 class="card-title my-3" style="color: red">{{city}}</h5>
+			<h5 class="card-title my-3" style="color: red">
+				{{city}}
+			</h5>
 
 			<template v-if="hasError">
 				<i class="fa fa-times fa-4x" style="color: red"></i>
@@ -39,22 +48,45 @@ export default {
 	props: {
 		city: {
 			type: String,
-			required: true,
 		},
 		woeid: {
-			type: Number,
-			required: true,
+			type: [Number, String],
+		},
+		dayData: {
+			type: [Object, Boolean],
+			default: false,
+		},
+		showDay: {
+			type: Boolean,
+			default: false,
+		},
+		noLink: {
+			type: Boolean,
+			default: false,
 		}
 	},
 	data(){
 		return {
 			hovered: false,
 			info: {},
-			loaded: false,
+			loaded: true,
 			hasError: false,
+		    days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+		}
+	},
+	computed: {
+		dayName(){
+			var d = new Date(this.info.applicable_date);
+			return this.days[d.getDay()];
 		}
 	},
 	created(){
+		if(this.dayData){
+			this.info = this.dayData;
+			return;
+		}
+
+		this.loaded = false;
 		Api.getWeatherById(this.woeid)
 			.then(data => {
 				this.info = data;
@@ -68,7 +100,10 @@ export default {
 	},
 	methods: {
 		gotoDetails(){
-			console.log("go to details");
+			if(this.noLink){
+				return;
+			}
+
 			this.$router.push({
 				path: "/weather/"+this.woeid,
 			});
