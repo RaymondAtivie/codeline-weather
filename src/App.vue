@@ -1,19 +1,29 @@
 <template>
 	<div id="app">
 		<nav class="navbar navbar-light bg-light justify-content-center shadow-sm">
-			<a class="navbar-brand" :to="{name: 'HomePage'}">Codebase Weather</a>
+			<a class="navbar-brand pointer" @click="goHome">Codebase Weather</a>
 		</nav>
 		<div class="container">
-			<router-view/>
+			<keep-alive>
+				<router-view/>
+			</keep-alive>
 		</div>
 	</div>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  methods: {
+	  goHome(){
+		  this.$router.push({name: 'HomePage'});
+	  }
+  }
 }
 </script>
 
 <style>
+.pointer{
+	cursor: pointer;
+}
 </style>

@@ -37,6 +37,7 @@ class Api {
 				.then(woeid => {
 					this.getWeatherById(woeid)
 						.then(wheather => {
+							wheather.woeid = woeid;
 							resolve(wheather);
 						});
 				});

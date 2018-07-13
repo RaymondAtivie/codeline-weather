@@ -1,9 +1,9 @@
 <template>
 	<div>
-		<h1>Home Page</h1>
-		<p>Testing</p>
+		<!-- <h1>Home Page</h1>
+		<p>Testing</p> -->
 
-		<div class="row">
+		<div class="row mt-5">
 			<div class="col-md-4 mb-4" v-for="city in cities" :key="city">
 				<wheather :key="city" :city="city"></wheather>
 			</div>
@@ -22,9 +22,6 @@ export default {
 	data(){
 		return {
 			cities: ['Istanbul', 'Berlin', 'London', 'Helsinki', 'Dublin', 'Vancouver'],
-			cityData: [
-
-			],
 		}
 	},
 	mounted(){
