@@ -1,6 +1,6 @@
-# cdoebase-weather
+# codeline-weather
 
-> A Vue.js project
+> A Sample Weather App Using VueJs Framework and data from [MetaWheather](https://www.metaweather.com/api/)
 
 ## Build Setup
 
