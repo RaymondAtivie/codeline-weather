@@ -1,9 +1,11 @@
 <template>
 	<div id="app">
 		<nav class="navbar navbar-light bg-light justify-content-center shadow-sm">
-			<a class="navbar-brand" href="#">Codebase Weather</a>
+			<a class="navbar-brand" :to="{name: 'HomePage'}">Codebase Weather</a>
 		</nav>
-		<router-view/>
+		<div class="container">
+			<router-view/>
+		</div>
 	</div>
 </template>
 
