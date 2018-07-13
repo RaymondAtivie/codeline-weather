@@ -1,9 +1,10 @@
 import axios from 'axios';
+import CONFIG from './../config';
 
 class Api {
 
 	constructor() {
-        axios.defaults.baseURL = "http://localhost/wheather-api/wheather.php";
+        axios.defaults.baseURL = CONFIG.API_URL;
 
         this.axios = axios;
 	}
@@ -28,6 +29,10 @@ class Api {
 					if(city){
 						resolve(city.woeid);
 					}
+					reject(false);
+				})
+				.catch(error => {
+					reject(error);
 				});
 		});
 	}
@@ -63,19 +68,6 @@ class Api {
 				.catch(error => {
 					reject(error);
 				})
-		});
-	}
-
-	getWeatherForCity(location){
-		return new Promise((resolve, reject) => {
-			this.findCityId(location)
-				.then(woeid => {
-					this.getWeatherById(woeid)
-						.then(wheather => {
-							wheather.woeid = woeid;
-							resolve(wheather);
-						});
-				});
 		});
 	}
 

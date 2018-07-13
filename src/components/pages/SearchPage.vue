@@ -12,6 +12,10 @@
 					<i v-if="seaching"> <i class="fa fa-spin fa-circle-o-notch"></i> Searching for "{{keyword}}"</i> &nbsp;
 				</div>
 				<h2>{{cities.length}} results for <span style="color: red">{{resultsKeyword}}</span></h2>
+
+				<div class="alert alert-warning mt-4" v-if="!seaching && cities.length < 1">
+					No results were found. Try changing the keyword!
+				</div>
 			</div>
 		</div>
 
@@ -46,13 +50,11 @@ export default {
 		searchForThis(keyword){
 			this.seaching = true;
 			this.keyword = keyword;
-			console.log(keyword);
 			this.loading = true;
 
 			Api.searchCities(keyword)
 				.then(cities => {
 					this.cities = cities;
-					console.log(this.cities);
 				})
 				.catch(error => {
 

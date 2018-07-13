@@ -13,6 +13,10 @@
 			</div>
 		</div>
 		<div class="row mt-2">
+			<div class="text-center" v-if="!loaded">
+				<i class="fa fa-spin fa-circle-o-notch fa-4x" style="color: #6c757d"></i>
+			</div>
+
 			<div class="col-md-3 mb-4" v-for="(day, index) in allInfo.consolidated_weather" :key="index">
 				<wheather showDay :dayData="day" noLink></wheather>
 			</div>
@@ -33,8 +37,6 @@ export default {
 	data(){
 		return {
 			woeid: 0,
-			hovered: false,
-			info: {},
 			loaded: false,
 			hasError: false,
 			allInfo: [],
@@ -55,7 +57,6 @@ export default {
 		Api.getAllWeatherById(this.woeid)
 			.then(data => {
 				this.allInfo = data;
-				console.log(data)
 			})
 			.catch(error => {
 				this.hasError = true;

@@ -1,5 +1,5 @@
 <template>
-	<div class="card pointer" :class="{'shadow hovered': hovered}" @mouseenter="hovered=true" @mouseleave="hovered=false" @click="gotoDetails">
+	<div class="card" :class="{'shadow hovered pointer': !noLink && hovered}" @mouseenter="hovered=true" @mouseleave="hovered=false" @click="gotoDetails">
 		<div class="card-body d-flex">
 
 			<h5 v-if="showDay" class="card-title my-3 text-center" style="color: red">
@@ -17,6 +17,7 @@
 
 			<template v-if="hasError">
 				<i class="fa fa-times fa-4x" style="color: red"></i>
+				<span>failed to load</span>
 			</template>
 
 			<template v-else-if="loaded">
@@ -101,6 +102,10 @@ export default {
 	methods: {
 		gotoDetails(){
 			if(this.noLink){
+				return;
+			}
+			if(this.hasError){
+				alert("cant load city");
 				return;
 			}
 

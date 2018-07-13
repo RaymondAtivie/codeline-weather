@@ -39,6 +39,12 @@ export default {
 						woeid: woeid
 					});
 				})
+				.catch(error => {
+					this.cities.push({
+						name: "",
+						woeid: 0,
+					})
+				})
 		})
 	}
 }
