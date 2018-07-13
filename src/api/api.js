@@ -37,8 +37,15 @@ class Api {
 			axios.get("?command=location&woeid="+woeid)
 				.then(({data}) => {
 					let wheather = data.consolidated_weather[0];
-					resolve(wheather);
-				});
+					if(wheather){
+						resolve(wheather);
+					}else{
+						reject(false);
+					}
+				})
+				.catch(error => {
+					reject(error);
+				})
 		});
 	}
 

@@ -8,13 +8,16 @@
 
 		<div class="row mt-4">
 			<div class="col-md-12">
-				<h2>{{cities.length}} results for <span style="color: red">{{keyword}}</span></h2>
+				<div>
+					<i v-if="seaching">Searching for {{keyword}}</i> &nbsp;
+				</div>
+				<h2>{{cities.length}} results for <span style="color: red">{{resultsKeyword}}</span></h2>
 			</div>
 		</div>
 
 		<div class="row mt-4">
 			<div class="col-md-4 mb-4" v-for="city in cities" :key="city.woeid">
-				<wheather :key="city.woeid" :city="city.title"></wheather>
+				<wheather :key="city.woeid" :city="city.title" :woeid="city.woeid"></wheather>
 			</div>
 		</div>
 
@@ -33,12 +36,15 @@ export default {
 	data(){
 		return {
 			keyword: '',
+			resultsKeyword: '',
+			seaching: false,
 			loading: false,
 			cities: [],
 		}
 	},
 	methods: {
 		searchForThis(keyword){
+			this.seaching = true;
 			this.keyword = keyword;
 			console.log(keyword);
 			this.loading = true;
@@ -48,12 +54,19 @@ export default {
 					this.cities = cities;
 					console.log(this.cities);
 				})
+				.catch(error => {
+
+				})
+				.then(() => {
+					this.seaching = false;
+					this.resultsKeyword = this.keyword;
+				})
 		}
 	},
 	created(){
 		let keyword = this.$route.params.keyword;
 		this.searchForThis(keyword);
-	}
+	},
 }
 </script>
 
