@@ -66,7 +66,7 @@ export default {
 				params: {
 					woeid: this.info.woeid
 				}
-			})
+			});
 		}
 	}
 }

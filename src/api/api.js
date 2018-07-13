@@ -8,6 +8,17 @@ class Api {
         this.axios = axios;
 	}
 
+	searchCities(keyword){
+		return new Promise((resolve, reject) => {
+
+			axios.get("?command=search&keyword="+keyword)
+				.then(({data}) => {
+					let cities = data;
+					resolve(cities);
+				});
+		});
+	}
+
 	findCityId(city){
 		return new Promise((resolve, reject) => {
 

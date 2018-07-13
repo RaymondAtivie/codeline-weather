@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<nav class="navbar navbar-light bg-light justify-content-center shadow-sm">
-			<a class="navbar-brand pointer" @click="goHome">Codebase Weather</a>
+			<a class="navbar-brand pointer" @click="goHome">Codeline Weather App</a>
 		</nav>
 		<div class="container">
 			<keep-alive>
